@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -13,29 +13,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 720px;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 1.2em;
   line-height: 1.1;
 }
 
 button {
+  width: max-content;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -54,15 +47,31 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
+
+.status {
+  padding-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+
+}
+
+.board-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  max-height: 80px;
+}
+
+.square {
+  width: 80px;
+  height: 80px;
+  border-radius: none;
+}
+
+
