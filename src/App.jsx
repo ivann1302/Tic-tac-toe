@@ -119,14 +119,18 @@ export default function Game() {
   // обхявление кнопок с возможность перехода по истории ходов
   const moves = history.map((squares, move) => {
     let description;
-    if (move > 0) {
-      description = 'Go to move #' + move;
+    if (move === 0) {
+      description = 'Go to game start';
+    } else if (move === currentMove) {
+      description = 'Current move';
     } else {
-      description ='Go to game start';
+      description = 'Go to move #' + move;
     }
     return (
       <li key={move}>
-        <button onClick ={()=> jumpTo(move)}>{description}</button>
+      {description === 'Current move' ? ( <h3>Current move</h3> )
+      : ( <button onClick ={()=> jumpTo(move)}>{description}</button>
+      )}
       </li>
     )
   })
