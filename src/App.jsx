@@ -1,97 +1,79 @@
-// import { useState } from 'react'
-
 import './App.css';
 import { useState } from 'react';
 
 // Функция, создающая клетку  для игры,принимает пропс значения
 // обработчика клика на клетку
-function Square({ value, onSquareClick }) {
+function Square({ value, onSquareClick, isWinning }) {
   return (
-    <button className="square" onClick={onSquareClick}>
-     {value}
+    <button
+      className={`square ${isWinning ? 'winning-square' : ''}`} // Добавляем класс для победной клетки
+      onClick={onSquareClick}
+    >
+      {value}
     </button>
-  )
+  );
 }
 
 // функция доски, принимающая пропсы следующего игрока
 // площадей ходов и обработчика
  // eslint-disable-next-line react/prop-types
- function Board({xIsNext, squares, onPlay}) {
-  
-  // функция определяющая обработчик событий
+ function Board({ xIsNext, squares, onPlay }) {
+  const { winner, line } = calculateWinner(squares); // Получаем победителя и его линию
+
+  const status = winner
+    ? `Winner: ${winner}`
+    : `Next player: ${xIsNext ? 'X' : 'O'}`;
+
   function handleClick(i) {
-  // проверка занята ли клетка или уже есть победитель
-    if (squares[i] || calculateWinner(squares)) {
-      return;
-    }
-  // создание копии массива, чтобы он не мутировался
-    // eslint-disable-next-line react/prop-types
+    if (squares[i] || winner) return;
+
     const nextSquares = squares.slice();
-
-  // определения игрока, который ходит
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
-    }
-
-  // вызов функции, обновляющая состояние в родительском компоненте
+    nextSquares[i] = xIsNext ? 'X' : 'O';
     onPlay(nextSquares);
-
   }
 
-  // вызов функции для определения победителя
-  const winner = calculateWinner(squares);
-  let status;
-  if (winner) {
-    status = "Winner " + winner;
-  } else {
-    status = "Next player " + (xIsNext ? 'X' : 'O');
+  function calculateWinner(squares) {
+    const lines = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Горизонтальные линии
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Вертикальные линии
+      [0, 4, 8], [2, 4, 6],            // Диагонали
+    ];
+  
+    for (const [a, b, c] of lines) {
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return { winner: squares[a], line: [a, b, c] }; // Возвращаем победителя и его линию
+      }
+    }
+    return { winner: null, line: null }; // Победитель не найден
   }
 
   function renderSquare(i) {
-    return <Square value={squares[i]} onSquareClick={() => handleClick(i)} />;
+    const isWinningSquare = line?.includes(i); // Проверяем, входит ли клетка в победную линию
+    return (
+      <Square
+        value={squares[i]}
+        onSquareClick={() => handleClick(i)}
+        isWinning={isWinningSquare} // Передаём пропс для подсветки
+      />
+    );
   }
-  
-// Разметка компонента
+
   return (
     <>
-    <div className='status'>{status}</div>
-    <div className='board-row'>
-    {renderSquare(0)}
-    {renderSquare(1)}
-    {renderSquare(2)}
-    </div>
-    <div className='board-row'>
-    {renderSquare(3)}
-    {renderSquare(4)}
-    {renderSquare(5)}
-    </div>
-    <div className='board-row'>
-      {renderSquare(6)}
-      {renderSquare(7)}
-      {renderSquare(8)}
-    </div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        {renderSquare(0)} {renderSquare(1)} {renderSquare(2)}
+      </div>
+      <div className="board-row">
+        {renderSquare(3)} {renderSquare(4)} {renderSquare(5)}
+      </div>
+      <div className="board-row">
+        {renderSquare(6)} {renderSquare(7)} {renderSquare(8)}
+      </div>
     </>
-  )
-
-    // Функция определенияnpm победителя (принимает массив клеток игрока)
-    function calculateWinner(squares) {
-      const lines = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // горизонтальные линии
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // вертикальные линии
-        [0, 4, 8], [2, 4, 6],            // диагонали
-      ];
-    
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
-    }
-    return null;
-  }
+  );
 }
+
 
 // Компонент управления состоянием с возможностью отслеживания истории
 export default function Game() {

@@ -79,4 +79,8 @@ li {
   border-radius: none;
 }
 
-
+.winning-square {
+  background-color:#57fa85;
+  color: black;
+  font-weight: bold;
+}
