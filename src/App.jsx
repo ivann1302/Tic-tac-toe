@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 // Функция, создающая клетку  для игры,принимает пропс значения
 // обработчика клика на клетку
+// eslint-disable-next-line react/prop-types
 function Square({ value, onSquareClick, isWinning }) {
   return (
     <button
@@ -27,6 +28,7 @@ function Square({ value, onSquareClick, isWinning }) {
   function handleClick(i) {
     if (squares[i] || winner) return;
 
+    // eslint-disable-next-line react/prop-types
     const nextSquares = squares.slice();
     nextSquares[i] = xIsNext ? 'X' : 'O';
     onPlay(nextSquares);
@@ -98,7 +100,7 @@ export default function Game() {
     setCurrentMove(nextMove);
   }
 
-  // обхявление кнопок с возможность перехода по истории ходов
+  // объявление кнопок с возможность перехода по истории ходов
   const moves = history.map((squares, move) => {
     let description;
     if (move === 0) {
