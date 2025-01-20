@@ -22,7 +22,9 @@ function Square({ value, onSquareClick, isWinning }) {
   const { winner, line } = calculateWinner(squares); // Получаем победителя и его линию
 
   const status = winner
-    ? `Winner: ${winner}`
+    ? winner === 'Draw'
+      ? 'The game is a draw!'
+    : `Winner: ${winner}`
     : `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   function handleClick(i) {
@@ -46,6 +48,12 @@ function Square({ value, onSquareClick, isWinning }) {
         return { winner: squares[a], line: [a, b, c] }; // Возвращаем победителя и его линию
       }
     }
+
+    // eslint-disable-next-line react/prop-types
+    if (squares.every(Boolean)) {
+      return { winner: 'Draw', line: null };
+    }
+
     return { winner: null, line: null }; // Победитель не найден
   }
 
