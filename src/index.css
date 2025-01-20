@@ -89,3 +89,12 @@ li {
 .winning-square:hover {
   background-color: #3dd472;
 }
+
+.reset-button {
+  margin-top: 1rem;
+}
+
+  .reset-button:hover {
+    background-color: red;
+    border-color: red;
+  }
