@@ -6,6 +6,7 @@ import Board from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+      <h1 className={'title'}>Tic-tac-toe</h1>
     <Board />
   </StrictMode>,
 )
