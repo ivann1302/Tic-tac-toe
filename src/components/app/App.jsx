@@ -6,7 +6,6 @@ import GameHistory from '../game-history/Game-history';
 import ResetButton from '../reset-button/Reset-button';
 import { calculateWinner } from '../../utils/Game-utils';
 
-
 // Компонент управления состоянием с возможностью отслеживания истории
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -19,10 +18,10 @@ export default function Game() {
   // обработчик события, отвечающий за обновление истории игры,
   //  nextSquares - массив, представляющий игровое поле после хода
   function handlePlay(nextSquares) {
-  // удаление ходов при перемотке игры назад
+    // удаление ходов при перемотке игры назад
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
-    setCurrentMove(nextHistory.length -1);
+    setCurrentMove(nextHistory.length - 1);
   }
 
   // обработчик события, отвечающий за перемотку к определенному ходу игры
@@ -46,11 +45,7 @@ export default function Game() {
           <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
         </div>
         <div className={styles.gameInfo}>
-          <GameHistory 
-            history={history} 
-            currentMove={currentMove} 
-            onJumpTo={jumpTo} 
-          />
+          <GameHistory history={history} currentMove={currentMove} onJumpTo={jumpTo} />
         </div>
       </div>
       <ResetButton onReset={resetGame} />

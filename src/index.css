@@ -13,7 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 body {
   margin: 0;
   min-width: 720px;
@@ -56,12 +55,10 @@ li {
   flex-direction: row;
 }
 
-
 .status {
   padding-bottom: 1rem;
   font-weight: 700;
   font-size: 1.5rem;
-
 }
 
 .board-row {
@@ -78,10 +75,12 @@ li {
 }
 
 .winning-square {
-  background-color:#57fa85;
+  background-color: #57fa85;
   color: black;
   font-weight: bold;
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease;
 }
 
 .winning-square:hover {
@@ -92,15 +91,15 @@ li {
   margin-top: 1rem;
 }
 
-  .reset-button:hover {
-    background-color: red;
-    border-color: red;
-  }
+.reset-button:hover {
+  background-color: red;
+  border-color: red;
+}
 
-  .title {
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: 4rem;
-    margin: 45px 0 45px 0;
-  }
+.title {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 4rem;
+  margin: 45px 0 45px 0;
+}

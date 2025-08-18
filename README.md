@@ -36,7 +36,7 @@ https://tic-tac-toe-tan-zeta.vercel.app/
    ```
    npm run dev
    ```
-   
+
 ## Структура проекта
 
 ```
