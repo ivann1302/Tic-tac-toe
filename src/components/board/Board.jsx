@@ -1,9 +1,8 @@
-import React from 'react';
 import Square from '../square/Square';
 import { calculateWinner } from './../../utils/Game-utils.js';
 import styles from './Board.module.scss';
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay, lastMove }) {
   const { winner, line } = calculateWinner(squares);
 
   function handleClick(i) {
@@ -11,13 +10,19 @@ function Board({ xIsNext, squares, onPlay }) {
 
     const nextSquares = squares.slice();
     nextSquares[i] = xIsNext ? 'X' : 'O';
-    onPlay(nextSquares);
+    onPlay(nextSquares, i);
   }
 
   function renderSquare(i) {
     const isWinningSquare = line?.includes(i);
+    const isLastMove = lastMove === i;
     return (
-      <Square value={squares[i]} onSquareClick={() => handleClick(i)} isWinning={isWinningSquare} />
+      <Square
+        value={squares[i]}
+        onSquareClick={() => handleClick(i)}
+        isWinning={isWinningSquare}
+        isLastMove={isLastMove}
+      />
     );
   }
 

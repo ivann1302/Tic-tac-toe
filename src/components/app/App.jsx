@@ -8,33 +8,48 @@ import { calculateWinner } from '../../utils/Game-utils';
 
 // Компонент управления состоянием с возможностью отслеживания истории
 export default function Game() {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [history, setHistory] = useState([
+    {
+      squares: Array(9).fill(null),
+      lastPosition: null,
+    },
+  ]);
   const [currentMove, setCurrentMove] = useState(0);
-  // определение очередности хода
+  const [lastMove, setLastMove] = useState(null);
   const xIsNext = currentMove % 2 === 0;
-  // текущее состояние игрового поля
-  const currentSquares = history[currentMove];
+  const currentSquares = history[currentMove].squares;
 
   // обработчик события, отвечающий за обновление истории игры,
   //  nextSquares - массив, представляющий игровое поле после хода
-  function handlePlay(nextSquares) {
+  function handlePlay(nextSquares, position) {
     // удаление ходов при перемотке игры назад
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    const nextHistory = [...history.slice(0, currentMove + 1),
+      {
+        squares: nextSquares,
+        lastPosition: position,
+      },
+    ];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
+    setLastMove(position);
   }
 
   // обработчик события, отвечающий за перемотку к определенному ходу игры
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
+    setLastMove(history[nextMove].lastPosition);
   }
 
   // Get the current game status
   const { winner, line } = calculateWinner(currentSquares);
 
   function resetGame() {
-    setHistory([Array(9).fill(null)]);
+    setHistory([{
+      squares: Array(9).fill(null),
+      lastPosition: null,
+    }]);
     setCurrentMove(0);
+    setLastMove(null);
   }
 
   return (
@@ -42,7 +57,12 @@ export default function Game() {
       <div className={styles.game}>
         <div className={styles.gameBoard}>
           <GameStatus winner={winner} xIsNext={xIsNext} />
-          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares}
+            onPlay={handlePlay}
+            lastMove={lastMove}
+          />
         </div>
         <div className={styles.gameInfo}>
           <GameHistory history={history} currentMove={currentMove} onJumpTo={jumpTo} />

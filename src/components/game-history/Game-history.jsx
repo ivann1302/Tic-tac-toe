@@ -1,8 +1,7 @@
-import React from 'react';
 import styles from './Game-history.module.scss';
 
 function GameHistory({ history, currentMove, onJumpTo }) {
-  const moves = history.map((squares, move) => {
+  const moves = history.map((historyItem, move) => {
     let description;
     if (move === 0) {
       description = 'Go to game start';
