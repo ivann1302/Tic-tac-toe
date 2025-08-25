@@ -1,30 +1,37 @@
 import Square from '../square/Square';
 import { calculateWinner } from './../../utils/Game-utils.js';
 import styles from './Board.module.scss';
+import { useMemo, useCallback } from 'react';
 
 function Board({ xIsNext, squares, onPlay, lastMove }) {
-  const { winner, line } = calculateWinner(squares);
+  const { winner, line } = useMemo(() => calculateWinner(squares), [squares]);
 
-  function handleClick(i) {
-    if (squares[i] || winner) return;
+  const handleClick = useCallback(
+    i => {
+      if (squares[i] || winner) return;
 
-    const nextSquares = squares.slice();
-    nextSquares[i] = xIsNext ? 'X' : 'O';
-    onPlay(nextSquares, i);
-  }
+      const nextSquares = squares.slice();
+      nextSquares[i] = xIsNext ? 'X' : 'O';
+      onPlay(nextSquares, i);
+    },
+    [onPlay, squares, winner, xIsNext]
+  );
 
-  function renderSquare(i) {
-    const isWinningSquare = line?.includes(i);
-    const isLastMove = lastMove === i;
-    return (
-      <Square
-        value={squares[i]}
-        onSquareClick={() => handleClick(i)}
-        isWinning={isWinningSquare}
-        isLastMove={isLastMove}
-      />
-    );
-  }
+  const renderSquare = useCallback(
+    i => {
+      const isWinningSquare = line?.includes(i);
+      const isLastMove = lastMove === i;
+      return (
+        <Square
+          value={squares[i]}
+          onSquareClick={() => handleClick(i)}
+          isWinning={isWinningSquare}
+          isLastMove={isLastMove}
+        />
+      );
+    },
+    [lastMove, squares, line, handleClick]
+  );
 
   return (
     <div className={styles.board}>
