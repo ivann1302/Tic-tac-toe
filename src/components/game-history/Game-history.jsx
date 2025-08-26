@@ -1,7 +1,10 @@
 import styles from './Game-history.module.scss';
 import { useMemo } from 'react';
+import { useGameContext } from '../../context/Game-context';
 
-function GameHistory({ history, currentMove, onJumpTo }) {
+function GameHistory() {
+  const { history, currentMove, jumpTo } = useGameContext();
+
   const moves = useMemo(() => {
     return history.map((historyItem, move) => {
       let description;
@@ -18,12 +21,12 @@ function GameHistory({ history, currentMove, onJumpTo }) {
           {move === currentMove ? (
             <h3>{move === 0 ? 'Current move' : `Current move #${move}`}</h3>
           ) : (
-            <button onClick={() => onJumpTo(move)}>{description}</button>
+            <button onClick={() => jumpTo(move)}>{description}</button>
           )}
         </li>
       );
     });
-  }, [history, currentMove, onJumpTo]);
+  }, [history, currentMove, jumpTo]);
 
   return (
     <div className={styles.gameHistory}>
