@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,css,scss}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss}\"",
     "preview": "vite preview",
     "commit": "cz"
   },
@@ -32,6 +33,7 @@
     "globals": "^15.14.0",
     "prettier": "^3.6.2",
     "sass": "^1.90.0",
+    "typescript": "^5.9.2",
     "vite": "^6.0.5"
   },
   "config": {
