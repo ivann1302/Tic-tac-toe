@@ -6,7 +6,7 @@ function GameHistory() {
   const { history, currentMove, jumpTo } = useGameContext();
 
   const moves = useMemo(() => {
-    return history.map((historyItem, move) => {
+    return history.map((_historyItem, move) => {
       let description;
       if (move === 0) {
         description = 'Go to game start';

@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Reset-button.module.scss';
 import { useGameContext } from '../../context/Game-context';
 

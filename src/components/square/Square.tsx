@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './Square.module.scss';
+import styles from './Square.module.scss'
+import { SquareProps } from '../../types/types';
 
-function Square({ value, onSquareClick, isWinning, isLastMove }) {
+function Square({ value, onSquareClick, isWinning = false, isLastMove = false }: SquareProps) {
   return (
     <button
       className={`${styles.square} ${isWinning ? styles.winningSquare : ''}

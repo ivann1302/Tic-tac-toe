@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Game-status.module.scss';
 import { useGameContext } from '../../context/Game-context';
 

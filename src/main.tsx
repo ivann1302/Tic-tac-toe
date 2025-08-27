@@ -4,7 +4,7 @@ import './index.css';
 import Game from './components/app/App';
 import { GameProvider } from './context/Game-context';
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <GameProvider>
       <h1 className={'title'}>Tic-tac-toe</h1>

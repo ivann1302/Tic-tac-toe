@@ -1,26 +1,33 @@
 import { createContext, useState, useContext, useMemo, useCallback } from 'react';
-import { calculateWinner } from '../utils/Game-utils.js';
+import {calculateWinner} from '../utils/Game-utils';
+import {
+  GameContextType,
+  HistoryItem,
+  SquareValue,
+  GameProviderProps,
+} from '../types/types';
 
-const GameContext = createContext(null);
 
-export function GameProvider({ children }) {
-  const [history, setHistory] = useState([
+const GameContext = createContext<GameContextType | null>(null);
+
+export function GameProvider({children}: GameProviderProps) {
+  const [history, setHistory] = useState<HistoryItem[]>([
     {
-      squares: Array(9).fill(null),
+      squares: Array(9).fill(null) as SquareValue[],
       lastPosition: null,
     },
   ]);
 
   const [currentMove, setCurrentMove] = useState(0);
-  const [lastMove, setLastMove] = useState(null);
+  const [lastMove, setLastMove] = useState<number | null>(null);
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove].squares;
 
-  const { winner, line } = useMemo(() => calculateWinner(currentSquares), [currentSquares]);
+  const {winner, line} = useMemo(() => calculateWinner(currentSquares), [currentSquares]);
 
   const handlePlay = useCallback(
-    (nextSquares, position) => {
+      (nextSquares: SquareValue[], position: number) => {
       // Удаление ходов при перемотке игры назад
       const nextHistory = [
         ...history.slice(0, currentMove + 1),
@@ -37,7 +44,7 @@ export function GameProvider({ children }) {
   );
 
   const jumpTo = useCallback(
-    nextMove => {
+      (nextMove: number) => {
       setCurrentMove(nextMove);
       setLastMove(history[nextMove].lastPosition);
     },
@@ -47,7 +54,7 @@ export function GameProvider({ children }) {
   const resetGame = useCallback(() => {
     setHistory([
       {
-        squares: Array(9).fill(null),
+        squares: Array(9).fill(null) as SquareValue[],
         lastPosition: null,
       },
     ]);
@@ -74,7 +81,7 @@ export function GameProvider({ children }) {
 
 export function useGameContext() {
   const context = useContext(GameContext);
-  if (context === undefined) {
+  if (context === null) {
     throw new Error('useGameContext must be used within a GameProvider');
   }
   return context;
