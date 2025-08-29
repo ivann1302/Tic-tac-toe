@@ -7,7 +7,7 @@ function Board() {
   const { xIsNext, currentSquares, handlePlay, lastMove, winner, line } = useGameContext();
 
   const handleClick = useCallback(
-      (i: number) => {
+    (i: number) => {
       if (currentSquares[i] || winner) return;
 
       const nextSquares = currentSquares.slice();
@@ -18,7 +18,7 @@ function Board() {
   );
 
   const renderSquare = useCallback(
-      (i: number) => {
+    (i: number) => {
       const isWinningSquare = line?.includes(i);
       const isLastMove = lastMove === i;
       return (

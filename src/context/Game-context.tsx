@@ -1,33 +1,61 @@
-import { createContext, useState, useContext, useMemo, useCallback } from 'react';
-import {calculateWinner} from '../utils/Game-utils';
-import {
-  GameContextType,
-  HistoryItem,
-  SquareValue,
-  GameProviderProps,
-} from '../types/types';
+import { createContext, useState, useContext, useMemo, useCallback, useEffect } from 'react';
+import { calculateWinner } from '../utils/Game-utils';
+import { GameContextType, HistoryItem, SquareValue, GameProviderProps } from '../types/types';
 
+const GAME_STATE_KEY = 'tic-tac-toe-game-state';
+
+interface SavedGameState {
+  history: HistoryItem[];
+  currentMove: number;
+  lastMove: number | null;
+}
 
 const GameContext = createContext<GameContextType | null>(null);
 
-export function GameProvider({children}: GameProviderProps) {
-  const [history, setHistory] = useState<HistoryItem[]>([
-    {
-      squares: Array(9).fill(null) as SquareValue[],
-      lastPosition: null,
-    },
-  ]);
+export function GameProvider({ children }: GameProviderProps) {
+  const loadInitialState = (): SavedGameState => {
+    const savedState = localStorage.getItem(GAME_STATE_KEY);
+    if (savedState) {
+      try {
+        return JSON.parse(savedState);
+      } catch (e) {
+        console.error('Error parsing saved game state', e);
+      }
+    }
 
-  const [currentMove, setCurrentMove] = useState(0);
-  const [lastMove, setLastMove] = useState<number | null>(null);
+    return {
+      history: [
+        {
+          squares: Array(9).fill(null) as SquareValue[],
+          lastPosition: null,
+        },
+      ],
+      currentMove: 0,
+      lastMove: null,
+    };
+  };
+
+  const initialState = loadInitialState();
+  const [history, setHistory] = useState<HistoryItem[]>(initialState.history);
+  const [currentMove, setCurrentMove] = useState(initialState.currentMove);
+  const [lastMove, setLastMove] = useState<number | null>(initialState.lastMove);
+
+  useEffect(() => {
+    const stateToSave: SavedGameState = {
+      history,
+      currentMove,
+      lastMove,
+    };
+    localStorage.setItem(GAME_STATE_KEY, JSON.stringify(stateToSave));
+  }, [history, currentMove, lastMove]);
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove].squares;
 
-  const {winner, line} = useMemo(() => calculateWinner(currentSquares), [currentSquares]);
+  const { winner, line } = useMemo(() => calculateWinner(currentSquares), [currentSquares]);
 
   const handlePlay = useCallback(
-      (nextSquares: SquareValue[], position: number) => {
+    (nextSquares: SquareValue[], position: number) => {
       // Удаление ходов при перемотке игры назад
       const nextHistory = [
         ...history.slice(0, currentMove + 1),
@@ -44,7 +72,7 @@ export function GameProvider({children}: GameProviderProps) {
   );
 
   const jumpTo = useCallback(
-      (nextMove: number) => {
+    (nextMove: number) => {
       setCurrentMove(nextMove);
       setLastMove(history[nextMove].lastPosition);
     },

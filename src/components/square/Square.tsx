@@ -1,4 +1,4 @@
-import styles from './Square.module.scss'
+import styles from './Square.module.scss';
 import { SquareProps } from '../../types/types';
 
 function Square({ value, onSquareClick, isWinning = false, isLastMove = false }: SquareProps) {
