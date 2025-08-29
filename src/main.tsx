@@ -3,12 +3,15 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import Game from './components/app/App';
 import { GameProvider } from './context/Game-context';
+import { ThemeProvider } from './context/Theme-context.tsx';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <GameProvider>
-      <h1 className={'title'}>Tic-tac-toe</h1>
-      <Game />
-    </GameProvider>
+    <ThemeProvider>
+      <GameProvider>
+        <h1 className={'title'}>Tic-tac-toe</h1>
+        <Game />
+      </GameProvider>
+    </ThemeProvider>
   </StrictMode>
 );

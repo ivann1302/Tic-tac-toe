@@ -7,7 +7,8 @@
     margin-bottom: 10px;
     position: sticky;
     top: 0;
-    background-color: #242424; /* Match the page background */
+    background-color: var(--bg-color); /* Match the page background */
+    color: var(--text-color); /* Ensure good contrast */
     padding: 5px 0;
     z-index: 1;
   }
@@ -24,6 +25,11 @@
     max-height: 350px; /* Set max-height to enable column wrapping */
     align-content: flex-start;
     justify-content: flex-start;
+
+    /* Style the list markers (numbers) */
+    ::marker {
+      color: var(--button-bg); /* Same color as buttons */
+    }
   }
 
   li {
@@ -38,9 +44,9 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      background-color: #1a1a1a;
+      background-color: var(--button-bg);
       border-radius: 8px;
-      color: #0066cc;
+      color: var(--text-color);
       width: auto; /* Width based on content */
       min-width: fit-content; /* Ensure h3 is at least as wide as its content */
       max-width: max-content; /* Limit width to content */
@@ -51,12 +57,12 @@
     button {
       font-weight: bold;
       padding: 6px 10px;
-      background-color: #1a1a1a;
-      color: rgba(255, 255, 255, 0.87);
+      background-color: var(--button-bg);
+      color: var(--move-button-text-color, var(--text-color)); /* Use green text in light theme */
       border: 1px solid transparent;
       border-radius: 8px;
       cursor: pointer;
-      transition: border-color 0.25s;
+      transition: all 0.25s;
       width: auto; /* Width based on content */
       min-width: fit-content; /* Ensure button is at least as wide as its content */
       max-width: max-content; /* Limit width to content */
@@ -68,6 +74,7 @@
       align-items: center; /* Center content vertically */
 
       &:hover {
+        background-color: var(--button-hover);
         border-color: #646cff;
       }
     }
@@ -75,6 +82,6 @@
 
   .currentMove {
     font-weight: bold;
-    color: #0066cc;
+    color: var(--current-move-color, var(--status-color));
   }
 }

@@ -1,25 +1,47 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --font-family: 'Arial', sans-serif;
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+body[data-theme='dark'] {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --border-color: #444444;
+  --square-bg: #2c2c2c;
+  --square-hover: #3a3a3a;
+  --button-bg: #3a3a3a;
+  --button-hover: #4a4a4a;
+  --winner-bg: rgba(0, 255, 0, 0.2);
+  --last-move-bg: rgba(255, 255, 0, 0.2);
+  --status-color: #61dafb;
+}
 
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Светлая тема */
+body[data-theme='light'] {
+  --bg-color: #f5f5f5;
+  --text-color: #ffffff;
+  --border-color: #dddddd;
+  --square-bg: #15803d; /* Darker emerald green */
+  --square-hover: #166534; /* Even darker emerald green on hover */
+  --button-bg: #15803d; /* Darker emerald green */
+  --button-hover: #166534; /* Even darker emerald green on hover */
+  --winner-bg: rgba(0, 0, 255, 0.2); /* Blue for light theme */
+  --last-move-bg: rgba(255, 215, 0, 0.2);
+  --status-color: #15803d; /* Green for status */
+  --current-move-color: #9ca3af; /* Light gray for current move number */
+  --move-button-text-color: #ffffff; /* White text for move buttons */
 }
 
 body {
   margin: 0;
   min-width: 720px;
   min-height: 100vh;
+  font-family: var(--font-family), sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: var(--transition);
 }
-
-h1 {
+W h1 {
   font-size: 1.2em;
   line-height: 1.1;
 }
@@ -32,11 +54,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--button-bg);
+  color: var(--text-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s;
 }
 button:hover {
+  background-color: var(--button-hover);
   border-color: #646cff;
 }
 button:focus,
@@ -72,11 +96,13 @@ li {
   width: 80px;
   height: 80px;
   border-radius: none;
+  background-color: var(--square-bg);
+  color: var(--text-color);
 }
 
 .winning-square {
-  background-color: #57fa85;
-  color: black;
+  background-color: var(--winner-bg);
+  color: var(--text-color);
   font-weight: bold;
   transition:
     background-color 0.5s ease,
@@ -84,21 +110,16 @@ li {
 }
 
 .winning-square:hover {
-  background-color: #3dd472;
+  background-color: var(--winner-bg);
 }
 
 .reset-button {
   margin-top: 1rem;
 }
 
-.reset-button:hover {
-  background-color: red;
-  border-color: red;
-}
-
 .title {
   text-align: center;
-  color: white;
+  color: var(--status-color);
   font-weight: bold;
   font-size: 4rem;
   margin: 45px 0 45px 0;

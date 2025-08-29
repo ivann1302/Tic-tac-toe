@@ -19,7 +19,7 @@ function Board() {
 
   const renderSquare = useCallback(
     (i: number) => {
-      const isWinningSquare = line?.includes(i);
+      const isWinningSquare = winner === 'Draw' ? true : line?.includes(i);
       const isLastMove = lastMove === i;
       return (
         <Square
@@ -30,7 +30,7 @@ function Board() {
         />
       );
     },
-    [lastMove, currentSquares, line, handleClick]
+    [lastMove, currentSquares, line, handleClick, winner]
   );
 
   return (
