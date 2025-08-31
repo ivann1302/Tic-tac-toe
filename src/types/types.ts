@@ -1,42 +1,42 @@
 import React from 'react';
 
-export type SquareValue = 'X' | 'O' | null;
+export type TSquareValue = 'X' | 'O' | null;
 
-export type GameResult = 'X' | 'O' | 'Draw' | null;
+export type TGameResult = 'X' | 'O' | 'Draw' | null;
 
 //  интерфейс для истории ходов
-export interface HistoryItem {
-  squares: SquareValue[];
+export interface IHistoryItem {
+  squares: TSquareValue[];
   lastPosition: number | null;
 }
 
-export interface WinnerResult {
-  winner: GameResult;
+export interface IWinnerResult {
+  winner: TGameResult;
   line: number[] | null;
 }
 
 // Интерфейс для контекста
-export interface GameContextType {
-  history: HistoryItem[];
+export interface IGameContextType {
+  history: IHistoryItem[];
   currentMove: number;
   lastMove: number | null;
   xIsNext: boolean;
-  currentSquares: SquareValue[];
-  winner: GameResult;
+  currentSquares: TSquareValue[];
+  winner: TGameResult;
   line: number[] | null;
-  handlePlay: (nextSquares: SquareValue[], position: number) => void;
+  handlePlay: (nextSquares: TSquareValue[], position: number) => void;
   jumpTo: (nextMove: number) => void;
   resetGame: () => void;
 }
 
 // пропсы для компонентов
-export interface SquareProps {
-  value: SquareValue;
+export interface ISquareProps {
+  value: TSquareValue;
   onSquareClick: () => void;
   isWinning?: boolean;
   isLastMove?: boolean;
 }
 
-export interface GameProviderProps {
+export interface IGameProviderProps {
   children: React.ReactNode;
 }

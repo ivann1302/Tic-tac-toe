@@ -1,18 +1,18 @@
 import { createContext, useState, useContext, useMemo, useCallback, useEffect } from 'react';
 import { calculateWinner } from '../utils/Game-utils';
-import { GameContextType, HistoryItem, SquareValue, GameProviderProps } from '../types/types';
+import { IGameContextType, IHistoryItem, TSquareValue, IGameProviderProps } from '../types/types';
 
 const GAME_STATE_KEY = 'tic-tac-toe-game-state';
 
 interface SavedGameState {
-  history: HistoryItem[];
+  history: IHistoryItem[];
   currentMove: number;
   lastMove: number | null;
 }
 
-const GameContext = createContext<GameContextType | null>(null);
+const GameContext = createContext<IGameContextType | null>(null);
 
-export function GameProvider({ children }: GameProviderProps) {
+export function GameProvider({ children }: IGameProviderProps) {
   const loadInitialState = (): SavedGameState => {
     const savedState = localStorage.getItem(GAME_STATE_KEY);
     if (savedState) {
@@ -26,7 +26,7 @@ export function GameProvider({ children }: GameProviderProps) {
     return {
       history: [
         {
-          squares: Array(9).fill(null) as SquareValue[],
+          squares: Array(9).fill(null) as TSquareValue[],
           lastPosition: null,
         },
       ],
@@ -36,7 +36,7 @@ export function GameProvider({ children }: GameProviderProps) {
   };
 
   const initialState = loadInitialState();
-  const [history, setHistory] = useState<HistoryItem[]>(initialState.history);
+  const [history, setHistory] = useState<IHistoryItem[]>(initialState.history);
   const [currentMove, setCurrentMove] = useState(initialState.currentMove);
   const [lastMove, setLastMove] = useState<number | null>(initialState.lastMove);
 
@@ -55,7 +55,7 @@ export function GameProvider({ children }: GameProviderProps) {
   const { winner, line } = useMemo(() => calculateWinner(currentSquares), [currentSquares]);
 
   const handlePlay = useCallback(
-    (nextSquares: SquareValue[], position: number) => {
+    (nextSquares: TSquareValue[], position: number) => {
       // Удаление ходов при перемотке игры назад
       const nextHistory = [
         ...history.slice(0, currentMove + 1),
@@ -82,7 +82,7 @@ export function GameProvider({ children }: GameProviderProps) {
   const resetGame = useCallback(() => {
     setHistory([
       {
-        squares: Array(9).fill(null) as SquareValue[],
+        squares: Array(9).fill(null) as TSquareValue[],
         lastPosition: null,
       },
     ]);
