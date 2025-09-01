@@ -11,9 +11,9 @@ body[data-theme='dark'] {
   --square-hover: #3a3a3a;
   --button-bg: #3a3a3a;
   --button-hover: #4a4a4a;
-  --winner-bg: rgba(0, 255, 0, 0.2);
-  --last-move-bg: rgba(255, 255, 0, 0.2);
-  --status-color: #61dafb;
+  --winner-bg:  #2ab595;
+  --last-move-bg: #2ab595;
+  --status-color: #2ab595;;
 }
 
 /* Светлая тема */
@@ -21,15 +21,15 @@ body[data-theme='light'] {
   --bg-color: #f5f5f5;
   --text-color: #ffffff;
   --border-color: #dddddd;
-  --square-bg: #15803d; /* Darker emerald green */
-  --square-hover: #166534; /* Even darker emerald green on hover */
-  --button-bg: #15803d; /* Darker emerald green */
-  --button-hover: #166534; /* Even darker emerald green on hover */
-  --winner-bg: rgba(0, 0, 255, 0.2); /* Blue for light theme */
-  --last-move-bg: rgba(255, 215, 0, 0.2);
-  --status-color: #15803d; /* Green for status */
-  --current-move-color: #9ca3af; /* Light gray for current move number */
-  --move-button-text-color: #ffffff; /* White text for move buttons */
+  --square-bg: #2a7bb5;
+  --square-hover: #2a5bb5;
+  --button-bg: #2a7bb5;
+  --button-hover: #2a5bb5;
+  --winner-bg: #dc2626;
+  --last-move-bg: #2a4bb7;
+  --status-color: #2a7bb5;
+  --current-move-color: #9ca3af;
+  --move-button-text-color: #ffffff;
 }
 
 body {
@@ -41,7 +41,7 @@ body {
   color: var(--text-color);
   transition: var(--transition);
 }
-W h1 {
+h1 {
   font-size: 1.2em;
   line-height: 1.1;
 }
