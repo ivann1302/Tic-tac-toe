@@ -1,6 +1,6 @@
-import { SquareValue, WinnerResult, GameResult } from '../types/types';
+import { TSquareValue, IWinnerResult, TGameResult } from '../types/types';
 
-export function calculateWinner(squares: SquareValue[]): WinnerResult {
+export function calculateWinner<T = 'X' | 'O'>(squares: TSquareValue<T>[]): IWinnerResult<T> {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -17,7 +17,7 @@ export function calculateWinner(squares: SquareValue[]): WinnerResult {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return {
-        winner: squares[a] as GameResult,
+        winner: squares[a] as TGameResult<T>,
         line: lines[i],
       };
     }
@@ -26,12 +26,11 @@ export function calculateWinner(squares: SquareValue[]): WinnerResult {
   // Check for a draw (all squares filled)
   if (!squares.includes(null)) {
     return {
-      winner: 'Draw',
+      winner: 'Draw' as TGameResult<T>,
       line: null,
     };
   }
 
-  // No winner yet
   return {
     winner: null,
     line: null,

@@ -11,9 +11,9 @@ body[data-theme='dark'] {
   --square-hover: #3a3a3a;
   --button-bg: #3a3a3a;
   --button-hover: #4a4a4a;
-  --winner-bg:  #2ab595;
+  --winner-bg: #2ab595;
   --last-move-bg: #2ab595;
-  --status-color: #2ab595;;
+  --status-color: #2ab595;
 }
 
 /* Светлая тема */

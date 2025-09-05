@@ -4,13 +4,13 @@ import { IGameContextType, IHistoryItem, TSquareValue, IGameProviderProps } from
 
 const GAME_STATE_KEY = 'tic-tac-toe-game-state';
 
-interface SavedGameState {
-  history: IHistoryItem[];
+interface SavedGameState<T = 'X' | 'O'> {
+  history: IHistoryItem<T>[];
   currentMove: number;
   lastMove: number | null;
 }
 
-const GameContext = createContext<IGameContextType | null>(null);
+const GameContext = createContext<IGameContextType<'X' | 'O'> | null>(null);
 
 export function GameProvider({ children }: IGameProviderProps) {
   const loadInitialState = (): SavedGameState => {

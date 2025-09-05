@@ -1,37 +1,38 @@
 import React from 'react';
 
-export type TSquareValue = 'X' | 'O' | null;
+export type TGameSymbol<T = 'X' | 'O'> = T | null;
+export type TSquareValue<T = 'X' | 'O'> = TGameSymbol<T>;
 
-export type TGameResult = 'X' | 'O' | 'Draw' | null;
+export type TGameResult<T = 'X' | 'O'> = T | 'Draw' | null;
 
 //  интерфейс для истории ходов
-export interface IHistoryItem {
-  squares: TSquareValue[];
+export interface IHistoryItem<T = 'X' | 'O'> {
+  squares: TSquareValue<T>[];
   lastPosition: number | null;
 }
 
-export interface IWinnerResult {
-  winner: TGameResult;
+export interface IWinnerResult<T = 'X' | 'O' | 'Draw'> {
+  winner: TGameResult<T>;
   line: number[] | null;
 }
 
 // Интерфейс для контекста
-export interface IGameContextType {
+export interface IGameContextType<T = 'X' | 'O'> {
   history: IHistoryItem[];
   currentMove: number;
   lastMove: number | null;
   xIsNext: boolean;
-  currentSquares: TSquareValue[];
-  winner: TGameResult;
+  currentSquares: TSquareValue<T>[];
+  winner: TGameResult<T>;
   line: number[] | null;
-  handlePlay: (nextSquares: TSquareValue[], position: number) => void;
+  handlePlay: (nextSquares: TSquareValue<T>[], position: number) => void;
   jumpTo: (nextMove: number) => void;
   resetGame: () => void;
 }
 
 // пропсы для компонентов
-export interface ISquareProps {
-  value: TSquareValue;
+export interface ISquareProps<T = 'X' | 'O'> {
+  value: TSquareValue<T>;
   onSquareClick: () => void;
   isWinning?: boolean;
   isLastMove?: boolean;

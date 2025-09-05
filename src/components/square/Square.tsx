@@ -1,7 +1,7 @@
 import styles from './Square.module.scss';
-import { SquareProps } from '../../types/types';
+import { ISquareProps } from '../../types/types';
 
-function Square({ value, onSquareClick, isWinning = false, isLastMove = false }: SquareProps) {
+function Square({ value, onSquareClick, isWinning = false, isLastMove = false }: ISquareProps) {
   return (
     <button
       className={`${styles.square} ${isWinning ? styles.winningSquare : ''}
@@ -9,7 +9,7 @@ function Square({ value, onSquareClick, isWinning = false, isLastMove = false }:
       `}
       onClick={onSquareClick}
     >
-      {value}
+      `{value}
     </button>
   );
 }
