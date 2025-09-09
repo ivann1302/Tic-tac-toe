@@ -1,0 +1,51 @@
+.resultModal {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.winner {
+  color: var(--winner-color, #4caf50);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.draw {
+  color: var(--draw-color, #ff9800);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.playAgainButton, .closeButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.playAgainButton {
+  background-color: var(--status-color);
+  color: white;
+
+  &:hover {
+    background-color: var(--button-hover);
+  }
+}
+
+.closeButton {
+  background-color: #dc2626;
+  color: white;
+
+  &:hover {
+    background-color: #b91c1c;
+  }
+}

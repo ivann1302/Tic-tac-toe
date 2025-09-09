@@ -12,10 +12,11 @@
 }
 
 .modalContent {
-  background-color: var(--background-color);
+  background-color: var(--bg-color);
   padding: 20px;
   border-radius: 8px;
   max-width: 500px;
   width: 90%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--status-color);
 }

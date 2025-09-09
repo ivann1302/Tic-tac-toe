@@ -49,3 +49,8 @@ export interface IModalProps {
   onClose: () => void;
   children: ReactNode;
 }
+
+export interface IGameResultModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
