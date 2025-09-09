@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactNode } from 'react';
 
 export type TGameSymbol<T = 'X' | 'O'> = T | null;
 export type TSquareValue<T = 'X' | 'O'> = TGameSymbol<T>;
@@ -40,4 +41,11 @@ export interface ISquareProps<T = 'X' | 'O'> {
 
 export interface IGameProviderProps {
   children: React.ReactNode;
+}
+
+// Интерфейс для модального окна
+export interface IModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
 }
