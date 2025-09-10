@@ -1,41 +1,24 @@
-import { useState, useEffect } from "react";
 import styles from './App.module.scss';
-import Board from '../board/Board';
-import GameStatus from '../game-status/Game-status';
-import GameHistory from '../game-history/Game-history';
-import ResetButton from '../reset-button/Reset-button';
+import { Routes, Route } from 'react-router-dom';
 import ThemeToggle from '../theme-toggle/Theme-toggle';
-import GameResultModal from "../modal/game-result-modal/Game-result-modal.tsx";
-import {useGameContext} from "../../context/Game-context.tsx";
-
-export default function Game() {
-    const { winner } = useGameContext();
-    const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        if (winner) {
-            setShowModal(true);
-        }
-    }, [winner]);
-
+import HomePage from '../../pages/HomePage/HomePage';
+import OfflineGamePage from '../../pages/OfflineGamePage/OfflineGamePage';
+// import OnlineGamePage from '../../pages/OnlineGamePage/OnlineGamePage';
+// import AIGamePage from '../../pages/AIGamePage/AIGamePage';
+import {UnderDevelopmentPage} from "../../pages/UnderDevelopmentPage/UnderDevelopmentPage.tsx";
+export default function App() {
   return (
-    <>
-      <ThemeToggle />
-      <div className={styles.game}>
-        <div className={styles.gameBoard}>
-          <GameStatus />
-          <Board />
-        </div>
-        <div className={styles.gameInfo}>
-          <GameHistory />
-        </div>
-      </div>
-      <ResetButton />
+    <div className={styles.app}>
 
-        <GameResultModal
-            isOpen={showModal}
-            onClose={() => setShowModal(false)}
-        />
-    </>
+      <ThemeToggle />
+
+        <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='offline' element={<OfflineGamePage />} />
+            <Route path='online' element={<UnderDevelopmentPage mode='online'/>}  />
+            <Route path='ai' element={<UnderDevelopmentPage mode='online'/>} />
+        </Routes>
+
+    </div>
   );
 }

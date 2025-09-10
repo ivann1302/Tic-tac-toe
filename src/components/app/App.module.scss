@@ -9,27 +9,3 @@
   justify-content: center;
   min-height: 100vh;
 }
-
-.game {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
-  height: 400px; /* Fixed height to prevent shifting */
-}
-
-.gameBoard {
-  margin-right: 20px;
-  position: sticky;
-  top: 0;
-  width: 240px; /* Fixed width based on 3 squares of 80px each */
-}
-
-.gameInfo {
-  margin-left: 20px;
-  /* No fixed height to ensure all content is visible */
-  overflow: visible; /* Show all content */
-  width: 250px; /* Maintain width to prevent layout shifts */
-}
