@@ -1,0 +1,16 @@
+.goHomeButton {
+  background: none;
+  border: none;
+  margin-top: 2rem;
+  text-decoration: none;
+  color: var(--status-color);
+  font-weight: 500;
+  font-size: 1.3rem;
+  transition: var(--transition);
+
+  &:hover {
+    text-decoration: underline;
+    background: none;
+    border: none;
+  }
+}

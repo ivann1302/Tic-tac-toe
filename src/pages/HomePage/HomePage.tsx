@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import styles from './HomePage.module.scss';
 
 export default function HomePage() {
+
     return (
         <div className={styles.homePage}>
-            <Link to="/" className={styles.backLink}>← Вернуться на главную</Link>
             <h2>Welcome to Tic-tac-toe game!</h2>
             <p>Select game mode: </p>
             <div className={styles.gameOptions}>

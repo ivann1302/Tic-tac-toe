@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import GoHomeButton from "../../components/go-home-button/GoHomeButton.tsx";
 import styles from "./UnderDevelopmentPage.module.scss";
 
 interface IUnderDevelopmentPageProps {
@@ -15,7 +15,7 @@ export function UnderDevelopmentPage( { mode }: IUnderDevelopmentPageProps ) {
             <div className={styles.illustration}>
                 🚧 👷‍♀️ 🔨
             </div>
-            <Link to='/' className={styles.backLink}>Return to Home page</Link>
+            <GoHomeButton />
         </div>
     );
 }

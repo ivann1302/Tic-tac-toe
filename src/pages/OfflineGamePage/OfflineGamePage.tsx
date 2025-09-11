@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './OfflineGamePage.module.scss';
 import Board from '../../components/board/Board';
 import GameStatus from '../../components/game-status/Game-status';
 import GameHistory from '../../components/game-history/Game-history';
 import ResetButton from '../../components/reset-button/Reset-button';
 import GameResultModal from '../../components/modal/game-result-modal/Game-result-modal';
+import GoHomeButton from "../../components/go-home-button/GoHomeButton.tsx";
 import { useGameContext } from '../../context/Game-context';
 
 export default function OfflineGamePage() {
@@ -21,8 +21,6 @@ export default function OfflineGamePage() {
 
     return (
         <div className={styles.offlineGamePage}>
-            <Link to="/" className={styles.backLink}>← Вернуться на главную</Link>
-
             <div className={styles.game}>
                 <div className={styles.gameBoard}>
                     <GameStatus />
@@ -33,6 +31,7 @@ export default function OfflineGamePage() {
                 </div>
             </div>
             <ResetButton />
+            <GoHomeButton />
 
             <GameResultModal
                 isOpen={showModal}
