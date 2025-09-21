@@ -4,7 +4,7 @@
   font-size: 16px;
   font-weight: bold;
   color: white;
-  background-color: #dc2626; /* Red color */
+  background-color: #dc2626;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -13,7 +13,7 @@
   margin-right: auto;
 
   &:hover {
-    background-color: #b91c1c; /* Slightly darker red on hover */
+    background-color: #b91c1c;
     border-color: #b91c1c;
   }
 

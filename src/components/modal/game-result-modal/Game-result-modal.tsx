@@ -15,10 +15,10 @@ function GameResultModal({ isOpen, onClose }: IGameResultModalProps) {
     let resultClass: string = '';
 
     if (winner ==='X' || winner ==='O') {
-        resultMessage = `Победитель игрок: "${winner}"!`;
+        resultMessage = `Winner is: "${winner}"!`;
         resultClass = styles.winner;
     } else if (winner === 'Draw') {
-        resultMessage = 'Ничья! Победитель не выявлен';
+        resultMessage = 'The game is drawn!';
         resultClass = styles.draw;
     }
 

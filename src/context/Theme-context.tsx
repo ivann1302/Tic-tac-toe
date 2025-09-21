@@ -8,7 +8,7 @@ interface ThemeContextType {
   theme: ThemeType;
   toggleTheme: () => void;
 }
-// &&&&&&
+
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {

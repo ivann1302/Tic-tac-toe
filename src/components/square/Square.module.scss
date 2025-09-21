@@ -9,8 +9,8 @@
   text-align: center;
   width: 80px;
   cursor: pointer;
-  box-sizing: border-box; /* Ensure padding and border are included in width/height */
-  display: inline-block; /* Use inline-block instead of float */
+  box-sizing: border-box;
+  display: inline-block;
   color: var(--text-color);
 
   &:focus {

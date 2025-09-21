@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
-  width: 240px; /* Fixed width to prevent shifting */
-  height: 240px; /* Fixed height to prevent shifting */
+  width: 240px;
+  height: 240px;
 }
 
 .boardRow {
   display: flex;
   align-items: center;
   gap: 0;
-  height: 80px; /* Fixed height instead of max-height */
-  width: 240px; /* Fixed width for each row */
+  height: 80px;
+  width: 240px;
 }
