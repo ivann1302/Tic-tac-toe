@@ -12,7 +12,7 @@ export function calculateWinner<T = 'X' | 'O'>(squares: TSquareValue<T>[]): IWin
     [2, 4, 6],
   ];
 
-  // Check for a winner
+  // Проверка победителя
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -23,7 +23,7 @@ export function calculateWinner<T = 'X' | 'O'>(squares: TSquareValue<T>[]): IWin
     }
   }
 
-  // Check for a draw (all squares filled)
+  // Проверка ничьей
   if (!squares.includes(null)) {
     return {
       winner: 'Draw' as TGameResult<T>,

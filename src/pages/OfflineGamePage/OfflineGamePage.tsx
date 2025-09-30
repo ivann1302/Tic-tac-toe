@@ -5,38 +5,34 @@ import GameStatus from '../../components/game-status/Game-status';
 import GameHistory from '../../components/game-history/Game-history';
 import ResetButton from '../../components/reset-button/Reset-button';
 import GameResultModal from '../../components/modal/game-result-modal/Game-result-modal';
-import GoHomeButton from "../../components/go-home-button/GoHomeButton.tsx";
+import GoHomeButton from '../../components/go-home-button/GoHomeButton.tsx';
 import { useGameContext } from '../../context/Game-context';
 
 export default function OfflineGamePage() {
-    const { winner } = useGameContext();
-    const [showModal, setShowModal] = useState(false);
+  const { winner } = useGameContext();
+  const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    if (winner) {
+      setShowModal(true);
+    }
+  }, [winner]);
 
-    useEffect(() => {
-        if (winner) {
-            setShowModal(true);
-        }
-    }, [winner]);
-
-    return (
-        <div className={styles.offlineGamePage}>
-            <div className={styles.game}>
-                <div className={styles.gameBoard}>
-                    <GameStatus />
-                    <Board />
-                </div>
-                <div className={styles.gameInfo}>
-                    <GameHistory />
-                </div>
-            </div>
-            <ResetButton />
-            <GoHomeButton />
-
-            <GameResultModal
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
-            />
+  return (
+    <div className={styles.offlineGamePage}>
+      <div className={styles.game}>
+        <div className={styles.gameBoard}>
+          <GameStatus />
+          <Board />
         </div>
-    );
+        <div className={styles.gameInfo}>
+          <GameHistory />
+        </div>
+      </div>
+      <ResetButton />
+      <GoHomeButton />
+
+      <GameResultModal isOpen={showModal} onClose={() => setShowModal(false)} />
+    </div>
+  );
 }

@@ -54,3 +54,20 @@ export interface IGameResultModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+export interface IUnderDevelopmentPageProps {
+  mode: 'online' | 'ai';
+}
+
+export type TThemeType = 'dark' | 'light';
+
+export interface IThemeContextType {
+  theme: TThemeType;
+  toggleTheme: () => void;
+}
+
+export interface ISavedGameState<T = 'X' | 'O'> {
+  history: IHistoryItem<T>[];
+  currentMove: number;
+  lastMove: number | null;
+}

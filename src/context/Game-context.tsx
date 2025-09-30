@@ -1,20 +1,19 @@
 import { createContext, useState, useContext, useMemo, useCallback, useEffect } from 'react';
 import { calculateWinner } from '../utils/Game-utils';
-import { IGameContextType, IHistoryItem, TSquareValue, IGameProviderProps } from '../types/types';
-
-const GAME_STATE_KEY = 'tic-tac-toe-game-state';
-
-interface SavedGameState<T = 'X' | 'O'> {
-  history: IHistoryItem<T>[];
-  currentMove: number;
-  lastMove: number | null;
-}
+import {
+  IGameContextType,
+  IHistoryItem,
+  TSquareValue,
+  IGameProviderProps,
+  ISavedGameState,
+} from '../types/types';
+import { GAME_STATE_KEY } from '../utils/constants.ts';
 
 const GameContext = createContext<IGameContextType<'X' | 'O'> | null>(null);
 
 export function GameProvider({ children }: IGameProviderProps) {
-  const loadInitialState = (): SavedGameState => {
-    const savedState = localStorage.getItem(GAME_STATE_KEY);
+  const loadInitialState = (): ISavedGameState => {
+    const savedState: string | null = localStorage.getItem(GAME_STATE_KEY);
     if (savedState) {
       try {
         return JSON.parse(savedState);
@@ -40,8 +39,8 @@ export function GameProvider({ children }: IGameProviderProps) {
   const [currentMove, setCurrentMove] = useState(initialState.currentMove);
   const [lastMove, setLastMove] = useState<number | null>(initialState.lastMove);
 
-  useEffect(() => {
-    const stateToSave: SavedGameState = {
+  useEffect((): void => {
+    const stateToSave: ISavedGameState = {
       history,
       currentMove,
       lastMove,
@@ -91,18 +90,18 @@ export function GameProvider({ children }: IGameProviderProps) {
   }, []);
 
   // Значения, которые будут доступны через контекст
-  const value = {
-    history,
-    currentMove,
-    lastMove,
-    xIsNext,
-    currentSquares,
-    winner,
-    line,
-    handlePlay,
-    jumpTo,
-    resetGame,
-  };
+  const value = useMemo(() => ({
+    history, // массив состояний поля по 9 клеток + lastPosition (подсветка)
+        currentMove, // индекс текущего хода
+        lastMove, // индекс клетки, на которую сходили последней
+        xIsNext, // кто ходит следующий
+        currentSquares, // клетки текущего игрока
+        winner, // победитель
+        line, // линия
+        handlePlay, // смена игрока
+        jumpTo, // переход по истории ходов
+        resetGame, // сброс игры
+  }), [history, currentMove, lastMove, xIsNext, currentSquares, winner, line, handlePlay, jumpTo, resetGame])
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 }

@@ -5,7 +5,7 @@
   justify-content: center;
   min-height: 80vh;
   padding: 2rem;
-  
+
   .backLink {
     position: fixed;
     top: 20px;
@@ -14,12 +14,12 @@
     color: var(--status-color);
     font-weight: 500;
     transition: var(--transition);
-    
+
     &:hover {
       text-decoration: underline;
     }
   }
-  
+
   .game {
     display: flex;
     flex-direction: row;
@@ -29,14 +29,14 @@
     width: 100%;
     max-width: 600px;
   }
-  
+
   .gameBoard {
     margin-right: 20px;
     position: sticky;
     top: 0;
     width: 240px;
   }
-  
+
   .gameInfo {
     margin-left: 20px;
     overflow: visible;
