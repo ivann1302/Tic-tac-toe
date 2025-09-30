@@ -28,10 +28,10 @@ function GameResultModal({ isOpen, onClose }: IGameResultModalProps) {
         <h2 className={resultClass}>{resultMessage}</h2>
         <div className={styles.buttons}>
           <button className={styles.playAgainButton} onClick={handlePlayAgain}>
-            Играть снова
+            Play again
           </button>
           <button className={styles.closeButton} onClick={onClose}>
-            Закрыть
+            Close
           </button>
         </div>
       </div>

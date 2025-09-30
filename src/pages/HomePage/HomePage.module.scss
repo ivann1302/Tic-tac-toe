@@ -40,6 +40,7 @@
 
       .card {
         width: 250px;
+        min-height: 109px;
         padding: 1.5rem;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -48,8 +49,9 @@
           box-shadow 0.3s;
 
         &:hover {
-          transform: translateY(-5px);
+          transform: translateY(-2px);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+          border: var(--status-color), solid, 1px;
         }
 
         h3 {
