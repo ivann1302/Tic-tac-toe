@@ -1,3 +1,6 @@
+![Демонстрация работы приложения](TicTacToeDemo.gif)
+
+
 # Крестики-нолики
 
 Онлайн-версия: https://tic-tac-toe-tan-zeta.vercel.app/
