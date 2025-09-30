@@ -1,13 +1,16 @@
-import { useGameContext } from '../../../context/Game-context.tsx';
 import Modal from './../Modal.tsx';
 import styles from './Game-result-modal.module.scss';
 import { IGameResultModalProps } from '../../../types/types.ts';
-
+import { useAppSelector } from '../../../hooks/useAppSelector.ts';
+import { selectWinnerAndLine } from '../../../store/selectors.ts';
+import { resetGame } from '../../../store/gameSlice.ts';
+import { useAppDispatch } from '../../../hooks/useAppDispatch.ts';
 function GameResultModal({ isOpen, onClose }: IGameResultModalProps) {
-  const { winner, resetGame } = useGameContext();
+  const { winner } = useAppSelector(selectWinnerAndLine);
+  const dispatch = useAppDispatch();
 
   const handlePlayAgain = () => {
-    resetGame();
+    dispatch(resetGame());
     onClose();
   };
 

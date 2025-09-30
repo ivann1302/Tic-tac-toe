@@ -1,20 +1,23 @@
 import Square from '../square/Square';
 import styles from './Board.module.scss';
 import { useCallback } from 'react';
-import { useGameContext } from '../../context/Game-context';
+import { useAppDispatch } from '../../hooks/useAppDispatch.ts';
+import { useAppSelector } from '../../hooks/useAppSelector.ts';
+import { selectCurrentSquares, selectWinnerAndLine, selectLastMove } from '../../store/selectors';
+import { playMove } from '../../store/gameSlice';
 
 function Board() {
-  const { xIsNext, currentSquares, handlePlay, lastMove, winner, line } = useGameContext();
+  const dispatch = useAppDispatch();
+  const currentSquares = useAppSelector(selectCurrentSquares);
+  const { winner, line } = useAppSelector(selectWinnerAndLine);
+  const lastMove = useAppSelector(selectLastMove);
 
   const handleClick = useCallback(
     (i: number) => {
       if (currentSquares[i] || winner) return;
-
-      const nextSquares = currentSquares.slice();
-      nextSquares[i] = xIsNext ? 'X' : 'O';
-      handlePlay(nextSquares, i);
+      dispatch(playMove(i));
     },
-    [handlePlay, currentSquares, winner, xIsNext]
+    [dispatch, currentSquares, winner]
   );
 
   const renderSquare = useCallback(

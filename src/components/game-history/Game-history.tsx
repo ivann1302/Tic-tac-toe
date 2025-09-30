@@ -1,9 +1,14 @@
 import styles from './Game-history.module.scss';
 import { useMemo } from 'react';
-import { useGameContext } from '../../context/Game-context';
+import { useAppDispatch } from '../../hooks/useAppDispatch.ts';
+import { useAppSelector } from '../../hooks/useAppSelector.ts';
+import { selectHistory, selectCurrentMove } from '../../store/selectors';
+import { jumpTo } from '../../store/gameSlice';
 
 function GameHistory() {
-  const { history, currentMove, jumpTo } = useGameContext();
+  const dispatch = useAppDispatch();
+  const history = useAppSelector(selectHistory);
+  const currentMove = useAppSelector(selectCurrentMove);
 
   const moves = useMemo(() => {
     return history.map((_historyItem, move) => {
@@ -21,12 +26,12 @@ function GameHistory() {
           {move === currentMove ? (
             <h3>{move === 0 ? 'Current move' : `Current move #${move}`}</h3>
           ) : (
-            <button onClick={() => jumpTo(move)}>{description}</button>
+            <button onClick={() => dispatch(jumpTo(move))}>{description}</button>
           )}
         </li>
       );
     });
-  }, [history, currentMove, jumpTo]);
+  }, [history, currentMove, dispatch]);
 
   return (
     <div className={styles.gameHistory}>
