@@ -6,10 +6,11 @@ import GameHistory from '../../components/game-history/Game-history';
 import ResetButton from '../../components/reset-button/Reset-button';
 import GameResultModal from '../../components/modal/game-result-modal/Game-result-modal';
 import GoHomeButton from '../../components/go-home-button/GoHomeButton.tsx';
-import { useGameContext } from '../../context/Game-context';
+import { useAppSelector } from '../../hooks/useAppSelector.ts';
+import { selectWinnerAndLine } from '../../store/selectors.ts';
 
 export default function OfflineGamePage() {
-  const { winner } = useGameContext();
+  const { winner } = useAppSelector(selectWinnerAndLine);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {

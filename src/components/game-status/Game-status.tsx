@@ -1,8 +1,10 @@
 import styles from './Game-status.module.scss';
-import { useGameContext } from '../../context/Game-context';
+import { selectXIsNext, selectWinnerAndLine } from '../../store/selectors.ts';
+import { useAppSelector } from '../../hooks/useAppSelector.ts';
 
 function GameStatus() {
-  const { winner, xIsNext } = useGameContext();
+  const { winner } = useAppSelector(selectWinnerAndLine);
+  const xIsNext = useAppSelector(selectXIsNext);
 
   const status = winner
     ? winner === 'Draw'

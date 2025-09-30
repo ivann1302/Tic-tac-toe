@@ -1,11 +1,12 @@
 import styles from './Reset-button.module.scss';
-import { useGameContext } from '../../context/Game-context';
+import { useAppDispatch } from '../../hooks/useAppDispatch.ts';
+import { resetGame } from '../../store/gameSlice.ts';
 
 function ResetButton() {
-  const { resetGame } = useGameContext();
+  const dispatch = useAppDispatch();
 
   return (
-    <button className={styles.resetButton} onClick={resetGame}>
+    <button className={styles.resetButton} onClick={() => dispatch(resetGame())}>
       Reset Game
     </button>
   );
