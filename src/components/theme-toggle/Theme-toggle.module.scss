@@ -21,13 +21,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color:  var(--button-bg);
+  background-color: var(--button-bg);
   transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 40px;
   width: 40px;
   left: 0;

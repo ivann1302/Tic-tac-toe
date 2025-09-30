@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 import { TThemeType, IThemeContextType } from '../types/types';
-import { THEME_KEY } from "../utils/constants.ts";
+import { THEME_KEY } from '../utils/constants.ts';
 
 const ThemeContext = createContext<IThemeContextType | null>(null);
 

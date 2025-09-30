@@ -90,18 +90,32 @@ export function GameProvider({ children }: IGameProviderProps) {
   }, []);
 
   // Значения, которые будут доступны через контекст
-  const value = useMemo(() => ({
-    history, // массив состояний поля по 9 клеток + lastPosition (подсветка)
-        currentMove, // индекс текущего хода
-        lastMove, // индекс клетки, на которую сходили последней
-        xIsNext, // кто ходит следующий
-        currentSquares, // клетки текущего игрока
-        winner, // победитель
-        line, // линия
-        handlePlay, // смена игрока
-        jumpTo, // переход по истории ходов
-        resetGame, // сброс игры
-  }), [history, currentMove, lastMove, xIsNext, currentSquares, winner, line, handlePlay, jumpTo, resetGame])
+  const value = useMemo(
+    () => ({
+      history, // массив состояний поля по 9 клеток + lastPosition (подсветка)
+      currentMove, // индекс текущего хода
+      lastMove, // индекс клетки, на которую сходили последней
+      xIsNext, // кто ходит следующий
+      currentSquares, // клетки текущего игрока
+      winner, // победитель
+      line, // линия
+      handlePlay, // смена игрока
+      jumpTo, // переход по истории ходов
+      resetGame, // сброс игры
+    }),
+    [
+      history,
+      currentMove,
+      lastMove,
+      xIsNext,
+      currentSquares,
+      winner,
+      line,
+      handlePlay,
+      jumpTo,
+      resetGame,
+    ]
+  );
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 }
