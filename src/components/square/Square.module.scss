@@ -48,3 +48,19 @@
     background-color: var(--winner-bg);
   }
 }
+
+@keyframes symbolAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.symbol {
+  display: inline-block;
+  animation: symbolAppear 0.5s forwards;
+}

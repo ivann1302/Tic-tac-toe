@@ -9,7 +9,7 @@ function Square({ value, onSquareClick, isWinning = false, isLastMove = false }:
       `}
       onClick={onSquareClick}
     >
-      {value}
+      {value && <span className={styles.symbol}>{value}</span>}
     </button>
   );
 }
