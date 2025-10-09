@@ -19,11 +19,11 @@ body[data-theme='dark'] {
   --grid-color: rgba(255, 255, 255, 0.03);
   /* Цвета градиентов для темной темы */
   --sphere1-a: rgba(255, 0, 128, 0.35);
-  --sphere1-b: rgba(255, 102, 0, 0.0);
+  --sphere1-b: rgba(255, 102, 0, 0);
   --sphere2-a: rgba(72, 0, 255, 0.35);
-  --sphere2-b: rgba(0, 183, 255, 0.0);
+  --sphere2-b: rgba(0, 183, 255, 0);
   --sphere3-a: rgba(133, 89, 255, 0.25);
-  --sphere3-b: rgba(98, 216, 249, 0.0);
+  --sphere3-b: rgba(98, 216, 249, 0);
 }
 
 /* Светлая тема */
@@ -42,7 +42,7 @@ body[data-theme='light'] {
   --move-button-text-color: #ffffff;
   --grid-color: rgba(0, 0, 0, 0.06);
   /* Цвета градиентов для светлой темы (персик + мята) */
-  --sphere1-a: rgba(255, 183, 77, 0.45);  /* Peach (more saturated for light bg) */
+  --sphere1-a: rgba(255, 183, 77, 0.45); /* Peach (more saturated for light bg) */
   --sphere1-b: rgba(255, 183, 77, 0.08);
   --sphere2-a: rgba(110, 231, 183, 0.35); /* Mint (more saturated) */
   --sphere2-b: rgba(110, 231, 183, 0.06);
@@ -60,20 +60,11 @@ body {
   transition: var(--transition);
 
   background-image:
-          radial-gradient(40vw 40vw at -10% -10%, var(--sphere1-a), var(--sphere1-b)),
-          radial-gradient(45vw 45vw at 110% 120%, var(--sphere2-a), var(--sphere2-b)),
-          radial-gradient(30vw 30vw at 20% 60%, var(--sphere3-a), var(--sphere3-b)),
-
-          repeating-linear-gradient(
-                  to right,
-                  var(--grid-color) 0 1px,
-                  transparent 1px 40px
-          ),
-          repeating-linear-gradient(
-                  to bottom,
-                  var(--grid-color) 0 1px,
-                  transparent 1px 40px
-          );
+    radial-gradient(40vw 40vw at -10% -10%, var(--sphere1-a), var(--sphere1-b)),
+    radial-gradient(45vw 45vw at 110% 120%, var(--sphere2-a), var(--sphere2-b)),
+    radial-gradient(30vw 30vw at 20% 60%, var(--sphere3-a), var(--sphere3-b)),
+    repeating-linear-gradient(to right, var(--grid-color) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(to bottom, var(--grid-color) 0 1px, transparent 1px 40px);
 
   background-repeat: repeat;
   background-position: 0 0;

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { calculateWinner } from '../utils/Game-utils';
 import { ISavedGameState, IHistoryItem, TSquareValue } from '../types/types';
 import { GAME_STATE_KEY } from '../utils/constants';
+import { GAME_TIMER_KEY } from '../utils/constants';
 
 const loadInitialState = (): ISavedGameState => {
   try {
@@ -65,6 +66,7 @@ export const gameSlice = createSlice({
       state.history = [{ squares: Array(9).fill(null) as TSquareValue[], lastPosition: null }];
       state.currentMove = 0;
       state.lastMove = null;
+      sessionStorage.removeItem(GAME_TIMER_KEY);
     },
   },
 });

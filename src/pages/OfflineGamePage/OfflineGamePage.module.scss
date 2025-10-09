@@ -42,4 +42,12 @@
     overflow: visible;
     width: 250px;
   }
+
+  .techContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
 }
