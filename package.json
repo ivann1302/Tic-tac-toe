@@ -11,7 +11,22 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss}\"",
     "preview": "vite preview",
-    "commit": "cz"
+    "commit": "cz",
+
+    "docker:build": "docker build -t tic-tac-toe:latest .",
+    "docker:run": "docker run -d -p 3000:3000 --name tic-tac-toe-app tic-tac-toe:latest",
+    "docker:stop": "docker stop tic-tac-toe-app && docker rm tic-tac-toe-app",
+    "docker:restart": "npm run docker:stop && npm run docker:run",
+    "docker:logs": "docker logs tic-tac-toe-app",
+    "docker:ps": "docker ps",
+    "docker:images": "docker images",
+    "docker:exec": "docker exec -it tic-tac-toe-app sh",
+    "docker:stats": "docker stats tic-tac-toe-app",
+    "docker:clean": "docker system prune -f",
+    
+    "docker:compose": "docker-compose up -d",
+    "docker:compose:down": "docker-compose down",
+    "docker:compose:restart": "npm run docker:compose:down && npm run docker:compose"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
