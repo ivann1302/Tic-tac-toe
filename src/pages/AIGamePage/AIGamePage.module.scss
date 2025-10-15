@@ -1,0 +1,164 @@
+@import '../../index.css';
+
+.aiGamePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.game {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  max-width: 900px; /* Увеличиваем для размещения расширенной правой панели */
+  width: 100%;
+}
+
+.gameBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  min-width: 0; /* Позволяет flex-элементу сжиматься */
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  min-height: 60px; /* Фиксированная высота для предотвращения смещения */
+}
+
+.boardContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aiThinking {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card-background);
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  animation: slideIn 0.3s ease-out;
+  min-width: 150px; /* Фиксированная ширина */
+  justify-content: center; /* Центрирование содержимого */
+  opacity: 0; /* Скрыт по умолчанию */
+  transition: opacity 0.3s ease-out;
+}
+
+.aiThinking.visible {
+  opacity: 1;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px; /* Увеличиваем ширину для двух колонок */
+  flex-shrink: 0; /* Предотвращает сжатие */
+  overflow: visible; /* Позволяем видеть содержимое */
+  min-height: 500px; /* Увеличиваем высоту для двух колонок */
+}
+
+.techContainer {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .game {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .gameInfo {
+    width: 100%;
+    flex-shrink: 1; /* Позволяет сжиматься на мобильных */
+    min-height: 300px; /* Меньшая минимальная высота на мобильных */
+  }
+
+  .techContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .statusContainer {
+    flex-direction: column;
+    gap: 15px;
+    min-height: 80px; /* Увеличиваем высоту для мобильных */
+  }
+
+  .aiThinking {
+    font-size: 14px;
+    padding: 8px 16px;
+    min-width: 120px; /* Меньшая ширина для мобильных */
+  }
+}
+
+@media (max-width: 480px) {
+  .aiGamePage {
+    padding: 10px;
+  }
+
+  .game {
+    gap: 15px;
+  }
+
+  .statusContainer {
+    gap: 10px;
+    min-height: 70px; /* Фиксированная высота для маленьких экранов */
+  }
+
+  .aiThinking {
+    font-size: 12px;
+    padding: 6px 12px;
+    min-width: 100px; /* Еще меньшая ширина для маленьких экранов */
+  }
+}

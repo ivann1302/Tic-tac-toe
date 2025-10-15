@@ -8,6 +8,7 @@ import GameResultModal from '../../components/modal/game-result-modal/Game-resul
 import GoHomeButton from '../../components/go-home-button/GoHomeButton.tsx';
 import { useAppSelector } from '../../hooks/useAppSelector.ts';
 import { selectWinnerAndLine } from '../../store/selectors.ts';
+import GameTimer from '../../components/game-timer/game-timer';
 
 export default function OfflineGamePage() {
   const { winner } = useAppSelector(selectWinnerAndLine);
@@ -30,8 +31,11 @@ export default function OfflineGamePage() {
           <GameHistory />
         </div>
       </div>
-      <ResetButton />
-      <GoHomeButton />
+      <div className={styles.techContainer}>
+        <GameTimer />
+        <ResetButton />
+        <GoHomeButton />
+      </div>
 
       <GameResultModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>

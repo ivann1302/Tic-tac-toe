@@ -37,6 +37,7 @@ export interface ISquareProps<T = 'X' | 'O'> {
   onSquareClick: () => void;
   isWinning?: boolean;
   isLastMove?: boolean;
+  disabled?: boolean;
 }
 
 export interface IGameProviderProps {
@@ -70,4 +71,6 @@ export interface ISavedGameState<T = 'X' | 'O'> {
   history: IHistoryItem<T>[];
   currentMove: number;
   lastMove: number | null;
+  isViewingHistory: boolean;
+  isAIThinking: boolean;
 }

@@ -4,7 +4,7 @@ import ThemeToggle from '../theme-toggle/Theme-toggle';
 import HomePage from '../../pages/HomePage/HomePage';
 import OfflineGamePage from '../../pages/OfflineGamePage/OfflineGamePage';
 // import OnlineGamePage from '../../pages/OnlineGamePage/OnlineGamePage';
-// import AIGamePage from '../../pages/AIGamePage/AIGamePage';
+import AIGamePage from '../../pages/AIGamePage/AIGamePage';
 import { UnderDevelopmentPage } from '../../pages/UnderDevelopmentPage/UnderDevelopmentPage.tsx';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="offline" element={<OfflineGamePage />} />
         <Route path="online" element={<UnderDevelopmentPage mode="online" />} />
-        <Route path="ai" element={<UnderDevelopmentPage mode="online" />} />
+        <Route path="ai" element={<AIGamePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
