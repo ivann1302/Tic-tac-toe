@@ -21,6 +21,17 @@
     background-color: var(--square-hover);
     border-color: #646cff;
   }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: var(--square-bg);
+
+    &:hover {
+      background-color: var(--square-bg);
+      border-color: var(--border-color);
+    }
+  }
 }
 
 .lastMoveSquare {

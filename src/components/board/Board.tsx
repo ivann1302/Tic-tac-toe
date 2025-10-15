@@ -3,7 +3,12 @@ import styles from './Board.module.scss';
 import { useCallback } from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch.ts';
 import { useAppSelector } from '../../hooks/useAppSelector.ts';
-import { selectCurrentSquares, selectWinnerAndLine, selectLastMove } from '../../store/selectors';
+import {
+  selectCurrentSquares,
+  selectWinnerAndLine,
+  selectLastMove,
+  selectIsAIThinking,
+} from '../../store/selectors';
 import { playMove } from '../../store/gameSlice';
 
 function Board() {
@@ -11,13 +16,14 @@ function Board() {
   const currentSquares = useAppSelector(selectCurrentSquares);
   const { winner, line } = useAppSelector(selectWinnerAndLine);
   const lastMove = useAppSelector(selectLastMove);
+  const isAIThinking = useAppSelector(selectIsAIThinking);
 
   const handleClick = useCallback(
     (i: number) => {
-      if (currentSquares[i] || winner) return;
+      if (currentSquares[i] || winner || isAIThinking) return;
       dispatch(playMove(i));
     },
-    [dispatch, currentSquares, winner]
+    [dispatch, currentSquares, winner, isAIThinking]
   );
 
   const renderSquare = useCallback(
@@ -30,10 +36,11 @@ function Board() {
           onSquareClick={() => handleClick(i)}
           isWinning={isWinningSquare}
           isLastMove={isLastMove}
+          disabled={isAIThinking}
         />
       );
     },
-    [lastMove, currentSquares, line, handleClick, winner]
+    [lastMove, currentSquares, line, handleClick, winner, isAIThinking]
   );
 
   return (

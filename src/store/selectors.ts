@@ -20,3 +20,14 @@ export const selectXIsNext = createSelector(
 export const selectWinnerAndLine = createSelector([selectCurrentSquares], currentSquares =>
   calculateWinner(currentSquares)
 );
+
+export const selectIsAITurn = createSelector(
+  [selectCurrentMove, selectWinnerAndLine],
+  (currentMove, { winner }) => {
+    const xIsNext = currentMove % 2 === 0;
+    return !xIsNext && !winner && currentMove > 0;
+  }
+);
+
+export const selectIsViewingHistory = (s: RootState) => s.game.isViewingHistory;
+export const selectIsAIThinking = (s: RootState) => s.game.isAIThinking;
